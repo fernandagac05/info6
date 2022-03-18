@@ -1,8 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+@include('fragments.validation-errors')
 
-<form action="{{route('post.store')}}" method="post">
+<h1>Post</h1>
+<form action="{{route('post.store')}}" method="POST">
+  @csrf
     <div class="form-group">
       <label for="title">Título</label>
       <input type="text" class="form-control" name="title" id="title">
@@ -21,4 +24,6 @@
     <input type="submit" value="Enviar" class="btn btn-primary">
 
   </form>
+
+
 @endsection
