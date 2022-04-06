@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Posts::get();
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(2);
         //dd($posts);
         return view('dashboard.post.posts', [
             'posts' => $posts
@@ -31,7 +31,9 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('dashboard.post.create');
+        return view('dashboard.post.create', [
+            'post' => new Posts()
+        ]);
 
     }
 
@@ -51,6 +53,7 @@ class PostController extends Controller
         ]);*/
         //dd($validated);
         //dd($request->validated());
+
 
         Posts::create($request->validated());   
 
@@ -79,7 +82,7 @@ class PostController extends Controller
     public function edit(Posts $post)
     {
         //
-        dd($post);
+        //dd($post);
         return view('dashboard.post.edit', [
             'post' => $post
         ]);
@@ -92,9 +95,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostRequest $request, Posts $post)
     {
-        //
+        //dd($request->validated());
+        //Post::find($id)->update($request->validated());
+        $post->update($request->validated());
+        return back()->with('status', 'Post updated successfully');
+        
+
     }
 
     /**
