@@ -12,6 +12,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route("post.index") }}">Post</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route("category.index") }}">Categorias</a>
+          </li>
 
           @auth
 
