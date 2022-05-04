@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Posts::orderBy('created_at', 'desc')->paginate(2);
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(10);
         //dd($posts);
         return view('dashboard.post.posts', [
             'posts' => $posts
